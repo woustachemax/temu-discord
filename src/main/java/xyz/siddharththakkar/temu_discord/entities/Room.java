@@ -19,8 +19,17 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String roomId;
 
     private final List<Message> messages = new ArrayList<>();
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+
+    public List<Message> getMessages(){
+        return new ArrayList<>(this.messages);
+    }
+
 }
