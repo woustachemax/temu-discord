@@ -28,9 +28,62 @@ public class Message {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    public Message(String sender, String content) {
-        this.sender = sender;
-        this.content = content;
-        this.time = LocalDateTime.now();
+    public Message() {
     }
+
+//    public Message(String sender, String content) {
+//        this.sender = sender;
+//        this.content = content;
+//        this.time = LocalDateTime.now();
+//    }
+public Message(String sender, String content) {
+    this.sender = sender;
+    this.content = content;
+    this.time = LocalDateTime.now();
+}
+
+    // Getters
+    public Long getId() {
+        return id;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+
+
 }
