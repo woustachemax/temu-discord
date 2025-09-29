@@ -18,18 +18,16 @@ import java.util.List;
 public class Room {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String roomId;
 
-    private final List<Message> messages = new ArrayList<>();
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Message> messages = new ArrayList<>();
+
+    public List<Message> getMessages() {
+        return new ArrayList<>(this.messages);
+    }
 
     public void setRoomId(String roomId) {
         this.roomId = roomId;
     }
-
-    public List<Message> getMessages(){
-        return new ArrayList<>(this.messages);
-    }
-
 }

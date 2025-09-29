@@ -33,12 +33,16 @@ public class RoomService {
         return room;
     }
 
-    public List<Message> getMessages(String roomId) {
+    public List<Message> getMessages(String roomId, int page, int size) {
         Room room = roomRepository.findByRoomId(roomId);
         if (room == null) {
             throw new IllegalArgumentException("No such room exists");
         }
-        return room.getMessages();
+        List<Message> messages = room.getMessages();
+        int start = Math.max(0, messages.size() - (page+1) * size);
+        int end = Math.min(messages.size(), start + size);
+        List<Message> paginatedMessage = messages.subList(start, end);
+        return paginatedMessage;
     }
 
 }

@@ -19,7 +19,7 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    @PostMapping
+    @PostMapping(consumes = "text/plain")
     public ResponseEntity<?> createRoom(@RequestBody String roomId) {
         try {
             Room room = roomService.createRoom(roomId);
@@ -45,7 +45,7 @@ public class RoomController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "20") int size) {
         try {
-            List<Message> messages = roomService.getMessages(roomId);
+            List<Message> messages = roomService.getMessages(roomId, page, size);
             return ResponseEntity.ok(messages);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
